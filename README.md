@@ -1,1 +1,4 @@
-# imac2-web
+# TD04
+## Steps
+- `npm install`
+- `npm start`
