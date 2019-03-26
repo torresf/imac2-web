@@ -1,26 +1,11 @@
 import { h } from 'hyperapp'
-import TeachersList from '../TeachersList.jsx'
-import CategoriesList from '../CategoriesList.jsx'
+import List from '../List.jsx'
 
-/*
- * Obligé de mettre une div englobante
- * car hyperapp ne supporte apparement pas
- * la syntaxe <></>
- */
-export default (state) =>
-  <div className="container">
-    <header>
-      <h1>Les cours à l'IMAC</h1>
-    </header>
-    <main>
-      <TeachersList
-        teachers={state.teachers}
-        subjects={state.subjects}
-      />
-      <CategoriesList
-        categories={state.categories}
-        subjects={state.subjects}
-        teachers={state.teachers}
-      />
-    </main>
-  </div>
+export default (state, actions) =>
+  <main>
+    <input
+      oninput={ (e) => actions.setValue(e.target.value)}
+      value={state.input.value} />
+    <button disabled={!state.input.value} onclick={() => actions.addItem({value: state.input.value})}>+</button>
+    <List items={state.list} removeItem={actions.removeItem} toggleCheck={actions.toggleCheck}/>
+  </main>

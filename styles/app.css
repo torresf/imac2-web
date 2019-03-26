@@ -1,172 +1,165 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: sans-serif;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   min-height: 100vh;
   margin: 0;
-  /*font-size: calc(10px + 2vmin);*/
-  background-color: rgba(0,0,0,0.01);
-  --main-color: rgb(251, 201, 244);
-  --secondary-color: #aa93ff;
+  font-size: calc(10px + 2vmin);
 }
 
-.container {
-  width: 100%;
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section > *+* {
+  margin-left: 2rem;
+}
+
+button {
+  padding: 0 1rem;
+  border: none;
+  font-size: 2rem;
+  height: 3rem;
+}
+
+h1 {
+  font-size: calc(20px + 6vmin);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 p {
-  text-align: left;
+  text-align: center;
   margin-top: 0;
 }
 
+.count {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 4rem;
+  color: #333;
+}
+
+[disabled] + .count {
+  color: #999;
+}
+
+.add {
+  background-color: mediumseagreen;
+  color: #fff;
+}
+
+.sub {
+  background-color: mediumvioletred;
+  color: #fff;
+}
+
+.sub[disabled] {
+  opacity: .5;
+}
+
 main {
-  padding: 40px 15% 0 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
 }
 
 ul {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin-bottom: 20px;
 }
 
-header {
-  /* border-bottom: 2px solid #efeaeb; */
-  background-color: white;
-  color: black;
-  padding: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-  position: fixed;
-  width: 100%;
-  z-index: 10;
+.checked {
+  color: grey;
 }
 
-header h1 {
+input {
+  padding: 10px;
+  border: 2px solid black;
+  margin: 2px;
+  max-width: 300px;
+}
+
+
+button {
+  padding: 10px;
+  margin: 0 15px;
+  height: auto;
+  font-size: 1em;
   text-align: center;
-  font-family: 'Poppins';
-  font-size: 1em;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  vertical-align: middle;
+  background: transparent;
   color: black;
-  margin: 0;
+  cursor: pointer;
 }
 
-h2 {
+button:disabled {
+  color: grey;
+  cursor: default;
+}
+
+button.remove {
+  border-radius: 3px;
+  border: 2px solid #9e1c1c;
+  color: white;
+  padding: 2px 5px;
+  font-size: .8em;
+  background-color: #de3434;
+  cursor: pointer;
+}
+
+button.remove:disabled {
+  cursor: default;
+  background-color: #c5c5c5;
+  border: 2px solid #adadad;
+  color: grey;
+}
+button.remove:hover {
+  opacity: .9;
+}
+button.remove:active {
+  opacity: .8;
+}
+
+.listItem {
   position: relative;
-  z-index: 1;
-  color: var(--main-color);
-  font-size: 3.5em;
-  font-weight: bold;
-  margin: 60px 0 0 0;
+  display: flex;
+  align-items: center;
 }
 
-h3 {
-  color: var(--secondary-color);
-  margin-left: 15px;
-  margin-bottom: 0;
-  font-weight: normal;
-}
 
-.card {
-  width: 250px;
-  margin: 15px;
-  border-radius: 6px;
-  box-shadow: 0 10px 40px -5px rgba(62, 61, 130, 0.25);
-  background-color: white;
-  color: black;
-}
-
-/*
- * Teachers
- */
-.teachers li.teacherCard {
-  overflow: hidden;
+.listItem label {
   position: relative;
+  cursor: pointer;
+  transition: .3s;
+  padding: 3px;
+  margin: 10px;
 }
 
-.teachers li.teacherCard .imgContainer {
-  height: 100%;
-  max-height: 200px;
-  overflow: hidden;
-  position: relative;
+.listItem.checked label {
+  color: grey;
 }
 
-.teachers li.teacherCard img {
+.listItem label:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  background-color: rgba(0, 0, 0, .8);
+  transition: .3s; 
+}
+
+.listItem.checked label:after {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
-.teachers li.teacherCard .about {
-  padding: 30px;
-}
-
-.teachers li.teacherCard .about .name {
-  font-size: 1em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.teachers li.teacherCard .about p {
-  font-size: .8em;
-  margin-bottom: 5px;
-}
-
-.teachers li.teacherCard .about p:last-child {
-  margin-bottom: 0;
-}
-
-/*
- * Subjects
- */
-.catList {
-  display: flex;
-  flex-direction: column;
-}
-
-.subjects .subjectCard {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.subjects .subjectCard .title {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.subjects .subjectCard .description {
-  font-size: .9em;
-}
-
-.subjects .subjectCard .teacher {
-  font-size: .9em;
-  font-style: italic;
-}
-
-.subjects .subjectCard .bottomInfos {
-  font-size: .8em;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-}
-
-.subjects .subjectCard .bottomInfos p {
-  margin-bottom: 0;
-}
-
-
-/*
- * Responsive
- */
-@media screen and (max-width: 992px) {
-  main {
-    padding: 20px;
-  }
+li {
+  margin: 10px 0;
 }
